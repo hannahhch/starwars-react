@@ -19,6 +19,15 @@ class Form extends Component{
         <div className = "form-header">
           <h3>What is your name, pilot?</h3>
         </div>
+        <form>
+    
+          <div className="form-group">
+            <input className="form-control col-md-3" name="name"  type="text"/>
+          </div>
+          <div className="form-group pull-right">
+            <input className="btn btn-primary btn-lg" type="submit" value="Submit"/>
+          </div>
+        </form>
       </div>
     )
   }
@@ -134,16 +143,25 @@ class App extends Component {
         <Header/>
         <Form/>
         {this.state.swapiResults.map(vehicle =>(
-          <div className = "cards card">{vehicle.name}</div>
+          <div className = "cards card">
+            <h4>Vehicle: {vehicle.name}</h4>
+            <h5>Model: {vehicle.model}</h5>
+            <div className = "specs">
+              <h6>Specs</h6>
+              <p>Manufacturer: {vehicle.manufacturer}</p>
+              <p>Class: {vehicle.vehicle_class}</p>
+              <p>Passengers: {vehicle.passengers}</p>
+              <p>Crew: {vehicle.crew}</p>
+              <p>Length: {vehicle.length}</p>
+              <p>Max Speed: {vehicle.max_atmosphering_speed}</p>
+              <p>Cargo Capacity: {vehicle.cargo_capacity}</p>
+            </div>
+          </div>
         ))}
       </div>
     );
   }
 }
-/*
-The App component needs the following:
-jumbotron section, form section, vehicle cards section.
-Your form will also need a header in which you will pass the state of the form upon submit.
-*/
+
 
 export default App;

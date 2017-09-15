@@ -23,9 +23,20 @@
 }
 
 .cards{
-  display: flex;
   background-color: white;
-  width: 80%;
+  width: 300px;
+  text-align: center;
   margin: 10px auto;
   padding: 10px 0;
+}
+
+.specs{
+  border: solid 1px grey;
+  padding: 5px;
+  margin: 5px;
+}
+
+.cards-wrapper{
+  display: flex;
+  flex-direction: row;
 }
