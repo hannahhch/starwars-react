@@ -1,20 +1,69 @@
 import React, {Component} from 'react';
 import '../styles/App.css';
 
+class Header extends Component{
+  render(){
+    return(
+      <div className = "header">
+        <h1>Star Wars</h1>
+        <h4>The Vehicles of Star Wars</h4>
+      </div>
+    )
+  }
+}
+
+class Form extends Component{
+  render(){
+    return(
+      <div className = "form">
+        <div className = "form-header">
+          <h3>What is your name, pilot?</h3>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Cards extends Component{
+  render(){
+    return(
+      <div className = "cards">
+        <div className = "vehicle-card">
+
+        </div>
+      </div>
+    )
+  }
+}
+
 class App extends Component {
+
+
   // PROPS AND STATE
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
+  constructor(props){
+    super(props);
+
+    this.state ={
+      vehicles: [],
+      value: '',
+      pilot: '',
+      swapi: '',
+      swapiResults: [],
+    };
 
 
 
-  // FORM: HANDLE INPUT CHANGES
-  // handleNameChange below:
-  // See form lesson for details.
-  // Enter your code below:
+    // FORM: HANDLE INPUT CHANGES
+    // handleNameChange below:
+    // See form lesson for details.
+    // Enter your code below:
 
-
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
 
   //  FORM: SUBMIT METHOD
   // handleSubmit below:
@@ -22,7 +71,24 @@ class App extends Component {
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
+  handleNameChange(event){
+    this.setState({
+      pilot: event.target.value
+    })
+  }
 
+  handleFormSubmit(event){
+    event.preventDefault()
+    const newPilot = {
+      pilot: this.state.pilot
+    }
+    const mainPilot = this.state.mainPilot
+    mainPilot.push(newPilot)
+
+    this.setState({
+      pilot: ""
+    })
+  }
 
   // LIFECYCLE
   // Which lifecycle is best for fetching data?
@@ -31,7 +97,14 @@ class App extends Component {
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
-
+  componentWillMount(){
+    fetch('https://swapi.co/api/vehicles/')
+    .then(response => response.json())
+    .then((json) =>{
+      console.log("API FETCHED!!", json)
+      this.setState({swapiResults: json.results})
+    })
+  }
 
   // RENDER
   // Before you can map over the data you've fetched, you will first need to store that 'state' in a variable.
@@ -43,21 +116,34 @@ class App extends Component {
 
   render() {
     /*
+    let swapi = this.state.swapi;
+    return (
+      <div key={swapi.id}>
+        <h1>Vehicle: {swapi.results[0].name}</h1>
+      </div>
+    )
+    */
+    /*
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-    }
-    return (
+    console.log('swapiResults', this.state.swapiResults)
+
+    return(
       <div className="App">
-      <p>Hello!</p>
-        /*
-        The App component needs the following:
-         jumbotron section, form section, vehicle cards section.
-         Your form will also need a header in which you will pass the state of the form upon submit.
-         */
+        <Header/>
+        <Form/>
+        {this.state.swapiResults.map(vehicle =>(
+          <div className = "cards card">{vehicle.name}</div>
+        ))}
       </div>
     );
   }
 }
+/*
+The App component needs the following:
+jumbotron section, form section, vehicle cards section.
+Your form will also need a header in which you will pass the state of the form upon submit.
+*/
 
 export default App;

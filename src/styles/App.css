@@ -8,4 +8,24 @@
 
 .form{
   text-align: center;
+  background-color: white;
+  margin: 15px auto;
+  width: 80%;
+  padding: 10px 0;
+}
+
+.header{
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.cards{
+  display: flex;
+  background-color: white;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px 0;
 }
