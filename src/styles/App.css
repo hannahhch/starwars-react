@@ -36,7 +36,10 @@
   margin: 5px;
 }
 
-.cards-wrapper{
+.vehicle-holder{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px;
+  padding: 20px;
 }
