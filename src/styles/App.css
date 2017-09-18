@@ -6,6 +6,10 @@
   margin: 5px;
 }
 
+h4{
+  text-transform: capitalize;
+}
+
 .form{
   text-align: center;
   background-color: white;
@@ -42,4 +46,8 @@
   flex-wrap: wrap;
   margin: 20px;
   padding: 20px;
+}
+
+.form-control{
+  margin: 0 auto;
 }
